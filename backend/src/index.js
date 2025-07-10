@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import authRoutes from "./routes/auth.route.js";
 
 dotenv.config();
 
@@ -25,8 +26,9 @@ app.use(
   })
 );
 
+app.use("/api/v1/auth", authRoutes);
 app.get("/", (req, res) => {
-  res.send("Paymate is up!");
+  res.send("server is up");
 });
 
 app.listen(port, () => {
