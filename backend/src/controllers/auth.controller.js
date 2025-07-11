@@ -152,4 +152,21 @@ const currentUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, currentUser };
+//logout controller
+const logoutUser = async (req, res) => {
+  const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+  };
+
+  // Properly clear cookies by setting expired dates
+  res.clearCookie("token", cookieOptions);
+
+  return res.status(200).json({
+    success: true,
+    message: "User logged out Successfully!",
+  });
+};
+
+export { registerUser, loginUser, currentUser, logoutUser };
