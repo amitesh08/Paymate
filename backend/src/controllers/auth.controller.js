@@ -1,7 +1,9 @@
 import prisma from "../config/db.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
+import { success } from "zod";
 
+//register user
 const registerUser = async (req, res) => {
   const { email, password, name } = req.body;
 
@@ -65,4 +67,61 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { registerUser };
+//login user
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Please fill all the fields!",
+    });
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "user didn't exist!",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({
+        success: false,
+        message: " Invalid Credentials!",
+      });
+    }
+
+    const token = generateToken(user.id);
+
+    //store it in cookie
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", //true in production
+      maxAge: 24 * 60 * 60 * 1000,
+    };
+    res.cookie("token", token, cookieOptions);
+
+    res.status(201).json({
+      user: { id: user.id, name: user.name, email: user.email },
+      token,
+    });
+  } catch (error) {
+    console.log("error logging user" + error);
+    return res.status(500).json({
+      success: false,
+      message: "Signin failed",
+    });
+  }
+};
+
+export { registerUser, loginUser };
