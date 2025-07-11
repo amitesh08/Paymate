@@ -111,7 +111,7 @@ const loginUser = async (req, res) => {
     };
     res.cookie("token", token, cookieOptions);
 
-    res.status(201).json({
+    res.status(200).json({
       user: { id: user.id, name: user.name, email: user.email },
       token,
     });
@@ -124,4 +124,32 @@ const loginUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser };
+//profile route
+const currentUser = async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      select: { id: true, name: true, email: true },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: `Welcome ${user.name} `,
+      user,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: "Can't fetch user! login again",
+    });
+  }
+};
+
+export { registerUser, loginUser, currentUser };
