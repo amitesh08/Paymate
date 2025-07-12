@@ -1,6 +1,6 @@
 import { TransactionStatus } from "@prisma/client";
 import prisma from "../config/db.js";
-import { success } from "zod";
+import { formatDate } from "../utils/formatDate.js";
 
 const sendMoney = async (req, res) => {
   const senderId = req.user.id;
@@ -136,13 +136,14 @@ const getTransactionHistroy = async (req, res) => {
     //setting type with the txns it sent or recieved money.
     const transactionWithType = transactions.map((txn) => ({
       ...txn,
+      createdAt: formatDate(txn.createdAt),
       type: txn.senderId === userId ? "SENT" : "RECEIVED",
     }));
 
     res.status(200).json({
       success: true,
       message: "Your Transactions-",
-      transactions: [transactionWithType],
+      transactions: transactionWithType,
     });
   } catch (error) {
     return res.status(400).json({
