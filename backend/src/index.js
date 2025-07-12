@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
+import transactionRoutes from "./routes/transaction.route.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -29,9 +30,7 @@ app.use(
 );
 
 app.use("/api/v1/auth", authRoutes);
-app.get("/", (req, res) => {
-  res.send("server is up");
-});
+app.use("/api/v1/transactions", transactionRoutes);
 
 app.listen(port, () => {
   console.log(`🚀 server is running on http://localhost:${port}`);
