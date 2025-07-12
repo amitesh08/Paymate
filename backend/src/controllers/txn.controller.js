@@ -1,5 +1,6 @@
 import { TransactionStatus } from "@prisma/client";
 import prisma from "../config/db.js";
+import { success } from "zod";
 
 const sendMoney = async (req, res) => {
   const senderId = req.user.id;
@@ -98,4 +99,57 @@ const sendMoney = async (req, res) => {
   }
 };
 
-export { sendMoney };
+const getTransactionHistroy = async (req, res) => {
+  const userId = req.user.id;
+
+  try {
+    const transactions = await prisma.transaction.findMany({
+      where: {
+        OR: [{ senderId: userId }, { receiverId: userId }],
+      },
+      orderBy: { createdAt: "desc" }, //sorting
+      include: {
+        sender: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+        receiver: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    if (!transactions) {
+      return res.status(400).json({
+        success: false,
+        message: "Error getting transactions histroy!",
+      });
+    }
+
+    //setting type with the txns it sent or recieved money.
+    const transactionWithType = transactions.map((txn) => ({
+      ...txn,
+      type: txn.senderId === userId ? "SENT" : "RECEIVED",
+    }));
+
+    res.status(200).json({
+      success: true,
+      message: "Your Transactions-",
+      transactions: [transactionWithType],
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: "Error getting Transaction histroy!",
+    });
+  }
+};
+
+export { sendMoney, getTransactionHistroy };
