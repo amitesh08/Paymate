@@ -34,6 +34,7 @@ const registerUser = async (req, res) => {
         email,
         name,
         password: hashedPassword,
+        balance: 1000, //starting bonus.
       },
     });
 
@@ -55,7 +56,12 @@ const registerUser = async (req, res) => {
     res.cookie("token", token, cookieOptions);
 
     res.status(201).json({
-      user: { id: newUser.id, name: newUser.name, email: newUser.email },
+      user: {
+        id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        balance: newUser.balance,
+      },
       token,
     });
   } catch (error) {
@@ -112,7 +118,12 @@ const loginUser = async (req, res) => {
     res.cookie("token", token, cookieOptions);
 
     res.status(200).json({
-      user: { id: user.id, name: user.name, email: user.email },
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        balance: user.balance,
+      },
       token,
     });
   } catch (error) {
