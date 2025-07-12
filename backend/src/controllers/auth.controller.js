@@ -1,7 +1,6 @@
 import prisma from "../config/db.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
-import { success } from "zod";
 
 //register user
 const registerUser = async (req, res) => {
@@ -35,6 +34,9 @@ const registerUser = async (req, res) => {
         name,
         password: hashedPassword,
         balance: 1000, //starting bonus.
+        avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${name.charAt(
+          0
+        )}`,
       },
     });
 
