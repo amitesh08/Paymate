@@ -8,3 +8,8 @@ export const sendRequestSchema = z.object({
     .positive("Amount must be greater than zero"),
   note: z.string().optional(),
 });
+
+export const respondSchema = z.object({
+  requestId: z.string().min(1, "Request ID is required"),
+  action: z.enum(["ACCEPT", "REJECT"]),
+});

@@ -1,4 +1,4 @@
-import { RequestStatus } from "@prisma/client";
+import { RequestStatus, TransactionStatus } from "@prisma/client";
 import prisma from "../config/db.js";
 import { success } from "zod";
 import { formatDate } from "../utils/formatDate.js";
@@ -161,4 +161,109 @@ const getoutgoingRequests = async (req, res) => {
   }
 };
 
-export { sendRequest, getIncomingRequests, getoutgoingRequests };
+//repond to request
+const respondRequest = async (req, res) => {
+  const { requestId, action } = req.body;
+  const receiverId = req.user.id;
+
+  try {
+    const request = await prisma.transactionRequest.findUnique({
+      where: { id: requestId },
+    });
+
+    // Validate request ownership and status
+    if (
+      !request ||
+      request.receiverId !== receiverId ||
+      request.status !== "PENDING"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid or unauthorized request.",
+      });
+    }
+
+    if (action === "REJECT") {
+      await prisma.transactionRequest.update({
+        where: { id: requestId },
+        data: { status: RequestStatus.REJECTED },
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: "Request rejected.",
+      });
+    }
+
+    if (action === "ACCEPT") {
+      const receiver = await prisma.user.findUnique({
+        where: { id: receiverId },
+      });
+
+      if (receiver.balance < request.amount) {
+        return res.status(400).json({
+          success: false,
+          message: "Insufficient balance to accept request.",
+        });
+      }
+
+      // Run atomic transaction
+      await prisma.$transaction(async (tx) => {
+        await tx.user.update({
+          where: { id: receiverId },
+          data: { balance: { decrement: request.amount } },
+        });
+
+        await tx.user.update({
+          where: { id: request.senderId },
+          data: { balance: { increment: request.amount } },
+        });
+
+        await tx.transaction.create({
+          data: {
+            senderId: receiverId, // because receiver is sending now
+            receiverId: request.senderId,
+            amount: request.amount,
+            note: request.note,
+            status: TransactionStatus.COMPLETED,
+          },
+        });
+
+        await tx.transactionRequest.update({
+          where: { id: requestId },
+          data: { status: RequestStatus.ACCEPTED },
+        });
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: "Request accepted and money sent.",
+        data: {
+          transaction: {
+            amount: request.amount,
+            to: request.senderId,
+            note: request.note,
+          },
+        },
+      });
+    }
+
+    res.status(400).json({
+      success: false,
+      message: "Invalid action type. Must be ACCEPT or REJECT.",
+    });
+  } catch (error) {
+    console.error("Respond Request Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to respond to request.",
+    });
+  }
+};
+
+export {
+  sendRequest,
+  getIncomingRequests,
+  getoutgoingRequests,
+  respondRequest,
+};
