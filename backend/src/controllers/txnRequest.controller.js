@@ -1,5 +1,7 @@
 import { RequestStatus } from "@prisma/client";
 import prisma from "../config/db.js";
+import { success } from "zod";
+import { formatDate } from "../utils/formatDate.js";
 
 const sendRequest = async (req, res) => {
   const { receiverId, amount, note } = req.body;
@@ -61,4 +63,102 @@ const sendRequest = async (req, res) => {
   }
 };
 
-export { sendRequest };
+//get all incomming request
+const getIncomingRequests = async (req, res) => {
+  try {
+    const incomingRequests = await prisma.transactionRequest.findMany({
+      where: {
+        receiverId: req.user.id,
+      },
+      include: {
+        sender: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatar: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "asc" },
+    });
+
+    if (!incomingRequests) {
+      return res.status(400).json({
+        success: false,
+        message: "Error getting the requests",
+      });
+    }
+
+    const formattedRequests = incomingRequests.map((request) => ({
+      id: request.id,
+      amount: request.amount,
+      note: request.note,
+      status: request.status,
+      createdAt: formatDate(request.createdAt),
+      sender: request.sender,
+    }));
+
+    res.status(200).json({
+      success: true,
+      message: "fetched all the incoming requests.",
+      requests: formattedRequests,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while getting requests.",
+    });
+  }
+};
+
+//get all outgoing request
+const getoutgoingRequests = async (req, res) => {
+  try {
+    const outgoingRequests = await prisma.transactionRequest.findMany({
+      where: {
+        senderId: req.user.id,
+      },
+      include: {
+        receiver: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            avatar: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "asc" },
+    });
+
+    if (!outgoingRequests) {
+      return res.status(400).json({
+        success: false,
+        message: "Error getting the requests",
+      });
+    }
+
+    const formattedRequests = outgoingRequests.map((request) => ({
+      id: request.id,
+      amount: request.amount,
+      note: request.note,
+      status: request.status,
+      createdAt: formatDate(request.createdAt),
+      receiver: request.receiver,
+    }));
+
+    res.status(200).json({
+      success: true,
+      message: "fetched all the outgoing requests.",
+      requests: formattedRequests,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while getting requests.",
+    });
+  }
+};
+
+export { sendRequest, getIncomingRequests, getoutgoingRequests };
