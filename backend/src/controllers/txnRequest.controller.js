@@ -1,6 +1,5 @@
 import { RequestStatus, TransactionStatus } from "@prisma/client";
 import prisma from "../config/db.js";
-import { success } from "zod";
 import { formatDate } from "../utils/formatDate.js";
 
 const sendRequest = async (req, res) => {
@@ -25,6 +24,22 @@ const sendRequest = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "No user present with this ID.",
+      });
+    }
+
+    //checking for duplicate request, only one active request.
+    const isRequest = await prisma.transactionRequest.findFirst({
+      where: {
+        senderId,
+        receiverId,
+        status: RequestStatus.PENDING,
+      },
+    });
+
+    if (isRequest) {
+      return res.status(400).json({
+        success: false,
+        message: " Request already pending with this user.",
       });
     }
 
