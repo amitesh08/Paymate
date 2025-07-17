@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
-const UserContext = createContext();
+// eslint-disable-next-line
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -11,7 +12,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-// Custom hook to use context easily
-//eslint-disable-next-line
-export const useUser = () => useContext(UserContext);
