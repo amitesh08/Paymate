@@ -2,8 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
+import { Link, useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
 const Signin = () => {
   const {
@@ -28,7 +28,11 @@ const Signin = () => {
       setUser(user);
 
       toast.success("Login successful!");
-      navigate("/");
+
+      setTimeout(() => {
+        //wait before navigating to dashboard
+        navigate("/");
+      }, 1000);
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     }
@@ -38,8 +42,8 @@ const Signin = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <Toaster />
       <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8 space-y-6">
-        <h2 className="text-2xl font-semibold text-gray-800">
-          Sign in to Paymate
+        <h2 className="text-center text-2xl font-semibold text-gray-800">
+          Sign in to <b>Paymate</b>
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -83,6 +87,12 @@ const Signin = () => {
           >
             Sign In
           </button>
+          <p className="text-sm text-center text-gray-600">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-indigo-600 hover:underline">
+              Create one
+            </Link>
+          </p>
         </form>
       </div>
     </div>
