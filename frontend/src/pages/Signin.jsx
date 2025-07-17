@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 const Signin = () => {

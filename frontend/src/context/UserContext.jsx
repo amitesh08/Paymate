@@ -13,4 +13,5 @@ export const UserProvider = ({ children }) => {
 };
 
 // Custom hook to use context easily
+//eslint-disable-next-line
 export const useUser = () => useContext(UserContext);
