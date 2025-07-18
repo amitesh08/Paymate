@@ -29,7 +29,7 @@ const Signup = () => {
 
       setTimeout(() => {
         //wait before navigating to dashboard
-        navigate("/");
+        navigate("/dashboard");
       }, 1000);
     } catch (error) {
       toast.error(

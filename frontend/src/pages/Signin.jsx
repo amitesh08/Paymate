@@ -31,7 +31,7 @@ const Signin = () => {
 
       setTimeout(() => {
         //wait before navigating to dashboard
-        navigate("/");
+        navigate("/dashboard");
       }, 1000);
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
