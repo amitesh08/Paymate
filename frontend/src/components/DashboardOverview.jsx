@@ -113,7 +113,7 @@ export const DashboardOverview = ({ profile }) => {
                 <li key={txn.id} className="py-3 flex justify-between">
                   <div>
                     <p className="text-sm text-gray-800">
-                      {txn.type === "send" ? "Sent to" : "Received from"}{" "}
+                      {txn.sender?.name == name ? "Sent to" : "Received from"}{" "}
                       <span className="font-medium">
                         {txn.receiver?.name || txn.sender?.name || "Unknown"}
                       </span>
@@ -125,10 +125,12 @@ export const DashboardOverview = ({ profile }) => {
                   <div className="text-right">
                     <p
                       className={`text-sm font-semibold ${
-                        txn.type === "send" ? "text-red-500" : "text-green-600"
+                        txn.sender?.name == name
+                          ? "text-red-500"
+                          : "text-green-600"
                       }`}
                     >
-                      {txn.type === "send" ? "-" : "+"}₹{txn.amount}
+                      {txn.sender?.name == name ? "-" : "+"}₹{txn.amount}
                     </p>
                   </div>
                 </li>
