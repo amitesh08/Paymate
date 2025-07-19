@@ -78,6 +78,10 @@ const getUserProfile = async (req, res) => {
       },
       orderBy: { createdAt: "desc" },
       take: 5,
+      include: {
+        sender: { select: { name: true } },
+        receiver: { select: { name: true } },
+      },
     });
 
     res.status(200).json({
