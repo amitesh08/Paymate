@@ -1,15 +1,20 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, Send, HandCoins, LogOut, ReceiptText } from "lucide-react";
+import axios from "axios";
 
 export const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    const confirmed = window.confirm("Are you sure you want to logout?");
-    if (confirmed) {
-      localStorage.removeItem("token");
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post("http://localhost:8000/api/v1/auth/logout", {
+        withCredentials: true,
+      });
+      console.log(res.data?.message);
       navigate("/signin");
+    } catch (error) {
+      console.error("Failed to logout User", error.response?.data);
     }
   };
 
