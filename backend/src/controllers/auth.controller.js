@@ -53,6 +53,8 @@ const registerUser = async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", //true in production
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      path: "/",
       maxAge: 24 * 60 * 60 * 1000,
     };
     res.cookie("token", token, cookieOptions);
@@ -115,6 +117,8 @@ const loginUser = async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", //true in production
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      path: "/",
       maxAge: 24 * 60 * 60 * 1000,
     };
     res.cookie("token", token, cookieOptions);
@@ -170,7 +174,8 @@ const logoutUser = async (req, res) => {
   const cookieOptions = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    path: "/",
   };
 
   // Properly clear cookies by setting expired dates

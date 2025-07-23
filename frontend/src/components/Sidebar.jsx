@@ -8,9 +8,13 @@ export const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post("http://localhost:8000/api/v1/auth/logout", {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res.data?.message);
       navigate("/signin");
     } catch (error) {
