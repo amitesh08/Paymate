@@ -68,17 +68,19 @@ export const Sidebar = () => {
 
       {/* User Info + Logout */}
       <div className="space-y-4">
-        <div className="flex items-center gap-3 md:flex-row flex-col md:items-start">
-          <Avatar url={user.avatar} name={user.name} />
-          <div className="hidden md:block">
-            <p className="text-sm font-semibold">{user.name}</p>
-            <p className="text-xs text-gray-500">{user.email}</p>
+        <div className="flex items-center gap-3 md:flex-row flex-col">
+          <div className="flex-shrink-0">
+            <Avatar url={user.avatar} name={user.name} />
+          </div>
+          <div className="hidden md:block min-w-0 flex-1">
+            <p className="text-sm font-semibold truncate">{user.name}</p>
+            <p className="text-xs text-gray-500 truncate">{user.email}</p>
           </div>
         </div>
 
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 text-red-500 hover:text-red-600 transition md:justify-start justify-center w-full pl-1.5 "
+          className="flex items-center gap-2 text-red-500 hover:text-red-600 transition md:justify-start justify-center w-full pl-2 py-1 rounded-lg hover:bg-red-50"
         >
           <LogOut size={20} />
           <span className="hidden md:inline">Logout</span>
