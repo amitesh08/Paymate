@@ -25,7 +25,7 @@ export const DashboardOverview = ({ profile }) => {
       </div>
 
       {/* Top Section: Balance + Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Balance Card */}
         <div className="rounded-2xl bg-white shadow-md p-6 flex flex-col justify-between">
           <div>
