@@ -111,7 +111,7 @@ const SendMoney = () => {
           {filtered.map((user) => (
             <div
               key={user._id}
-              className="flex items-center justify-between p-3 bg-white shadow-sm rounded-lg hover:bg-gray-50"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-white shadow-sm rounded-lg hover:bg-gray-50 space-y-3 sm:space-y-0"
             >
               <div className="flex items-center space-x-3">
                 <Avatar url={user.avatar} name={user.name} />
@@ -120,13 +120,13 @@ const SendMoney = () => {
                   <p className="text-sm text-gray-500">{user.email}</p>
                 </div>
               </div>
-              <div className="space-x-2">
+              <div className="flex space-x-2 w-full sm:w-auto">
                 <button
                   onClick={() => {
                     setSelectedUser(user);
                     setActionType("send");
                   }}
-                  className="px-4 py-1 rounded-lg text-white bg-green-500 hover:bg-green-600 text-sm"
+                  className="flex-1 sm:flex-none px-4 py-2 rounded-lg text-white bg-green-500 hover:bg-green-600 text-sm"
                 >
                   Send
                 </button>
@@ -135,7 +135,7 @@ const SendMoney = () => {
                     setSelectedUser(user);
                     setActionType("request");
                   }}
-                  className="px-4 py-1 rounded-lg text-white bg-blue-500 hover:bg-blue-600 text-sm"
+                  className="flex-1 sm:flex-none px-4 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600 text-sm"
                 >
                   Request
                 </button>
