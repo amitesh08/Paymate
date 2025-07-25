@@ -1,12 +1,12 @@
-// src/components/ExportPDFButton.jsx
 import axios from "axios";
 import toast from "react-hot-toast";
 
+/* eslint-disable no-undef */
 const ExportPDFButton = () => {
   const handleExport = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/v1/transactions/export",
+        `${process.env.REACT_APP_API_URL}/api/v1/transactions/export`,
         {
           responseType: "blob",
           withCredentials: true,

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
+/* eslint-disable no-undef */
 // eslint-disable-next-line
 export const UserContext = createContext();
 
@@ -13,9 +14,12 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/v1/auth/me", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/v1/auth/me`,
+          {
+            withCredentials: true,
+          }
+        );
         setUser(res.data.user);
         setError(null);
       } catch (err) {

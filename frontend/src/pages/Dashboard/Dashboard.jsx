@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { DashboardOverview } from "../../components/DashboardOverview";
 import axios from "axios";
 
+/* eslint-disable no-undef */
 export const Dashboard = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,7 +12,7 @@ export const Dashboard = () => {
     const fetchDashboard = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/v1/users/profile",
+          `${process.env.REACT_APP_API_URL}/api/v1/users/profile`,
           {
             withCredentials: true,
           }

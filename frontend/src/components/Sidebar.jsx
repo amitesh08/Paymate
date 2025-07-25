@@ -5,6 +5,7 @@ import useUser from "../hooks/useUser";
 import Avatar from "./Avatar";
 import toast, { Toaster } from "react-hot-toast";
 
+/* eslint-disable no-undef */
 export const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const Sidebar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:8000/api/v1/auth/logout",
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/logout`,
         {},
         { withCredentials: true }
       );

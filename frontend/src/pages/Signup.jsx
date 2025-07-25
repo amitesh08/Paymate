@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
+/* eslint-disable no-undef */
 const Signup = () => {
   const {
     register,
@@ -19,7 +20,7 @@ const Signup = () => {
       clearError();
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/signup",
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/signup`,
         data,
         {
           withCredentials: true, //for setting tokens
