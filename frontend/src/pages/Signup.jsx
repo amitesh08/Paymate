@@ -1,4 +1,3 @@
-"use client";
 import { useForm } from "react-hook-form";
 import useUser from "../hooks/useUser";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,11 +10,14 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { setUser } = useUser();
+  const { setUser, clearError } = useUser();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
+      // Clear any previous errors
+      clearError();
+
       const res = await axios.post(
         "http://localhost:8000/api/v1/auth/signup",
         data,
@@ -24,12 +26,14 @@ const Signup = () => {
         }
       );
       const user = res.data.user;
+
+      // Set user immediately - this will also clear loading states
       setUser(user);
+
       toast.success("Signup successful!");
-      setTimeout(() => {
-        //wait before navigating to dashboard
-        navigate("/dashboard");
-      }, 1000);
+
+      // Navigate immediately since we've updated the user state
+      navigate("/dashboard");
     } catch (error) {
       toast.error(
         // Show a toast notification for error
