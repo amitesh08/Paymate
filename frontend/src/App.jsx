@@ -8,10 +8,12 @@ import MainLayout from "./layout/MainLayout";
 import SendMoney from "./pages/Dashboard/SendMoney";
 import TransactionRequests from "./pages/Dashboard/TransactionRequests";
 import Transactions from "./pages/Dashboard/Transactions";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
 
