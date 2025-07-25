@@ -20,8 +20,7 @@ export const Dashboard = () => {
         setError(null);
       } catch (error) {
         setProfile(null);
-        setError("Failed fetching the Data!");
-        console.log(error?.response?.data?.message || "Please retry");
+        setError(error?.response?.data?.message || "Failed fetching the Data!");
       } finally {
         setLoading(false);
       }

@@ -3,6 +3,7 @@ import { Home, Send, HandCoins, LogOut, ReceiptText } from "lucide-react";
 import axios from "axios";
 import useUser from "../hooks/useUser";
 import Avatar from "./Avatar";
+import toast, { Toaster } from "react-hot-toast";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -11,15 +12,14 @@ export const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:8000/api/v1/auth/logout",
         {},
         { withCredentials: true }
       );
-      console.log(res.data?.message);
       navigate("/signin");
     } catch (error) {
-      console.error("Failed to logout User", error.response?.data);
+      toast.error(error.response?.data || "failed to logout");
     }
   };
 
@@ -32,6 +32,7 @@ export const Sidebar = () => {
 
   return (
     <aside className="w-20 md:w-64 bg-white border-r h-full p-4 flex flex-col justify-between shadow-md transition-all duration-300">
+      <Toaster />
       <div>
         {/* Logo */}
         <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">

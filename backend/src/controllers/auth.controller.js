@@ -69,7 +69,6 @@ const registerUser = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log("error creating user" + error);
     return res.status(500).json({
       success: false,
       message: "Signup failed",
@@ -133,7 +132,6 @@ const loginUser = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log("error logging user" + error);
     return res.status(500).json({
       success: false,
       message: "Signin failed",

@@ -36,6 +36,4 @@ app.use("/api/v1/transactions", transactionRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/requests", transactionRequests);
 
-app.listen(port, () => {
-  console.log(`🚀 server is running on http://localhost:${port}`);
-});
+app.listen(port, () => {});
