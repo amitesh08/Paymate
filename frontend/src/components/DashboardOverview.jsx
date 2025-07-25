@@ -41,7 +41,7 @@ export const DashboardOverview = ({ profile }) => {
               Send Money
             </Link>
             <Link
-              to="/dashboard/requests"
+              to="/dashboard/send"
               className="inline-block px-4 py-2 rounded-xl bg-gray-100 text-gray-800 text-sm font-medium shadow hover:bg-gray-200 transition"
             >
               Request Money
