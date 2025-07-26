@@ -13,19 +13,10 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 //for frontend
-const allowedOrigins = [process.env.BASE_URL, "http://localhost:5173"];
+const allowedOrigins = [process.env.BASE_URL];
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
