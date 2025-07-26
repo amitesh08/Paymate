@@ -17,7 +17,6 @@ const Signin = () => {
     try {
       // Clear any previous errors
       clearError();
-      console.log(import.meta.env.VITE_API_URL);
 
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/v1/auth/signin`,

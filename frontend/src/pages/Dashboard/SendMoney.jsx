@@ -24,9 +24,12 @@ const SendMoney = () => {
 
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/v1/users", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/v1/users`,
+          {
+            withCredentials: true,
+          }
+        );
         setUsers(res.data.users || []);
         toast.success(res.data.message || "Users fetched");
       } catch (err) {
