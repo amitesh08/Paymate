@@ -120,7 +120,7 @@ const loginUser = async (req, res) => {
       sameSite: "None",
       path: "/",
       maxAge: 24 * 60 * 60 * 1000,
-      domain: "paymate-backend-s0hz.onrender.com",
+      partioned: true,
     };
 
     res.cookie("token", token, cookieOptions);
