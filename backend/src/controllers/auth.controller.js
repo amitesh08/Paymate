@@ -120,6 +120,10 @@ const loginUser = async (req, res) => {
       path: "/",
       maxAge: 24 * 60 * 60 * 1000,
     };
+
+    console.log("NODE_ENV:", process.env.NODE_ENV);
+    console.log("Cookie options:", cookieOptions);
+
     res.cookie("token", token, cookieOptions);
 
     res.status(200).json({
