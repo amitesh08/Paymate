@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 //for frontend
-const allowedOrigins = [process.env.BASE_URL];
+const allowedOrigins = ["https://paymate-phi.vercel.app"];
 app.use(
   cors({
     origin: allowedOrigins,
