@@ -30,7 +30,9 @@ app.use(
     extended: true,
   })
 );
-
+app.get("/", (req, res) => {
+  res.send("Backend is working");
+});
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/transactions", transactionRoutes);
 app.use("/api/v1/users", userRoutes);
