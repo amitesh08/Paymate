@@ -52,8 +52,8 @@ const registerUser = async (req, res) => {
     //store it in cookie
     const cookieOptions = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", //true in production
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: true, //true in production
+      sameSite: "none",
       path: "/",
       maxAge: 24 * 60 * 60 * 1000,
     };
@@ -115,12 +115,10 @@ const loginUser = async (req, res) => {
     //store it in cookie
     const cookieOptions = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", //true in production
-      // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      sameSite: "None",
+      secure: true, //true in production
+      sameSite: "none",
       path: "/",
       maxAge: 24 * 60 * 60 * 1000,
-      partioned: true,
     };
 
     res.cookie("token", token, cookieOptions);
@@ -174,8 +172,8 @@ const currentUser = async (req, res) => {
 const logoutUser = async (req, res) => {
   const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: true, //true in production
+    sameSite: "none",
     path: "/",
   };
 

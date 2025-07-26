@@ -12,13 +12,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-//for frontend
-app.set("trust proxy", true);
-
-const allowedOrigins = ["https://paymate-phi.vercel.app"];
+// const allowedOrigins = [];
 app.use(
   cors({
-    origin: allowedOrigins[0],
+    origin: process.env.BASE_URL,
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
