@@ -16,7 +16,7 @@ const port = process.env.PORT || 8000;
 const allowedOrigins = ["https://paymate-phi.vercel.app"];
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: allowedOrigins[0],
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
