@@ -117,7 +117,7 @@ const loginUser = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", //true in production
       // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      sameSite: "none",
+      sameSite: "None",
       path: "/",
       maxAge: 24 * 60 * 60 * 1000,
       domain: "paymate-backend-s0hz.onrender.com",
