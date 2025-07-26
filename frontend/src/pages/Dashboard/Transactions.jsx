@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ExportPDFButton from "../../components/ExportPDFButton";
 
-/* eslint-disable no-undef */
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +13,7 @@ const Transactions = () => {
     const fetchTransactions = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/v1/transactions/histroy`, //FIX: IN Backend history
+          `${import.meta.env.VITE_API_URL}/api/v1/transactions/histroy`, //FIX: IN Backend history
           {
             withCredentials: true,
           }

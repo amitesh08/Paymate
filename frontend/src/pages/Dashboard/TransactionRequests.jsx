@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Avatar from "../../components/Avatar";
 
-/* eslint-disable no-undef */
 export default function TransactionRequests() {
   const [incoming, setIncoming] = useState([]);
   const [outgoing, setOutgoing] = useState([]);
@@ -15,14 +14,14 @@ export default function TransactionRequests() {
   const fetchRequests = async () => {
     try {
       const incomingRes = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/requests/incoming`,
+        `${import.meta.env.VITE_API_URL}/api/v1/requests/incoming`,
         {
           withCredentials: true,
         }
       );
 
       const outgoingRes = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/v1/requests/outgoing`,
+        `${import.meta.env.VITE_API_URL}/api/v1/requests/outgoing`,
         {
           withCredentials: true,
         }
@@ -38,7 +37,7 @@ export default function TransactionRequests() {
   const handleRespond = async (requestId, action) => {
     try {
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/v1/requests/respond`,
+        `${import.meta.env.VITE_API_URL}/api/v1/requests/respond`,
         {
           requestId,
           action,

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-/* eslint-disable no-undef */
 // eslint-disable-next-line
 export const UserContext = createContext();
 
@@ -15,7 +14,7 @@ export const UserProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/v1/auth/me`,
+          `${import.meta.env.VITE_API_URL}/api/v1/auth/me`,
           {
             withCredentials: true,
           }

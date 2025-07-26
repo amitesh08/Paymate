@@ -4,7 +4,6 @@ import toast, { Toaster } from "react-hot-toast";
 import useDebounce from "../../hooks/useDebounce";
 import Avatar from "../../components/Avatar";
 
-/* eslint-disable no-undef */
 const SendMoney = () => {
   const [users, setUsers] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -72,8 +71,8 @@ const SendMoney = () => {
 
       const url =
         actionType === "send"
-          ? `${process.env.REACT_APP_API_URL}/api/v1/transactions/send`
-          : `${process.env.REACT_APP_API_URL}/api/v1/requests/send`;
+          ? `${import.meta.env.VITE_API_URL}/api/v1/transactions/send`
+          : `${import.meta.env.VITE_API_URL}/api/v1/requests/send`;
 
       const res = await axios.post(url, payload, {
         withCredentials: true,
