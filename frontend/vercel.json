@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "https://paymate-backend-s0hz.onrender.com/api/$1"
+        }
+    ]
+}
