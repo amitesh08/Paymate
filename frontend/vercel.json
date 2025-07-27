@@ -3,6 +3,10 @@
         {
             "source": "/api/(.*)",
             "destination": "https://paymate-backend-s0hz.onrender.com/api/$1"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
