@@ -13,7 +13,8 @@ export const Sidebar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/v1/auth/logout`,
+        // `${import.meta.env.VITE_API_URL}/api/v1/auth/logout`,
+        "/api/v1/auth/logout",
         {},
         { withCredentials: true }
       );

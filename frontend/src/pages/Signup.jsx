@@ -19,7 +19,8 @@ const Signup = () => {
       clearError();
 
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/v1/auth/signup`,
+        // `${import.meta.env.VITE_API_URL}/api/v1/auth/signup`,
+        "/api/v1/auth/signup",
         data,
         {
           withCredentials: true, //for setting tokens

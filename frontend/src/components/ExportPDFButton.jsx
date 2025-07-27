@@ -5,7 +5,8 @@ const ExportPDFButton = () => {
   const handleExport = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/v1/transactions/export`,
+        // `${import.meta.env.VITE_API_URL}/api/v1/transactions/export`,
+        "/api/v1/transactions/export",
         {
           responseType: "blob",
           withCredentials: true,

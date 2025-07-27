@@ -25,7 +25,8 @@ const SendMoney = () => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/v1/users`,
+          // `${import.meta.env.VITE_API_URL}/api/v1/users`,
+          "/api/v1/users",
           {
             withCredentials: true,
           }
@@ -74,8 +75,10 @@ const SendMoney = () => {
 
       const url =
         actionType === "send"
-          ? `${import.meta.env.VITE_API_URL}/api/v1/transactions/send`
-          : `${import.meta.env.VITE_API_URL}/api/v1/requests/send`;
+          ? // ? `${import.meta.env.VITE_API_URL}/api/v1/transactions/send`
+            "/api/v1/transactions/send"
+          : // : `${import.meta.env.VITE_API_URL}/api/v1/requests/send`;
+            "/api/v1/requests/send";
 
       const res = await axios.post(url, payload, {
         withCredentials: true,

@@ -13,7 +13,8 @@ const Transactions = () => {
     const fetchTransactions = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/v1/transactions/histroy`, //FIX: IN Backend history
+          // `${import.meta.env.VITE_API_URL}/api/v1/transactions/histroy`, //FIX: IN Backend history
+          "/api/v1/transactions/histroy",
           {
             withCredentials: true,
           }
