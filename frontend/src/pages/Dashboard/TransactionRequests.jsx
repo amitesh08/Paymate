@@ -14,14 +14,16 @@ export default function TransactionRequests() {
   const fetchRequests = async () => {
     try {
       const incomingRes = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/v1/requests/incoming`,
+        // `${import.meta.env.VITE_API_URL}/api/v1/requests/incoming`,
+        "/api/v1/requests/incoming",
         {
           withCredentials: true,
         }
       );
 
       const outgoingRes = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/v1/requests/outgoing`,
+        // `${import.meta.env.VITE_API_URL}/api/v1/requests/outgoing`,
+        "/api/v1/requests/outgoing",
         {
           withCredentials: true,
         }
