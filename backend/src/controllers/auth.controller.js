@@ -116,8 +116,7 @@ const loginUser = async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: true, //true in production
-      same_site: "None",
-      path: "/",
+      sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000,
     };
 
