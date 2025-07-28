@@ -61,7 +61,7 @@ export default function LandingPage() {
                 </button>
               </Link>
               <Link to="/signup">
-                <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-sm transition-colors">
+                <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 cursor-pointer text-white rounded-lg font-medium shadow-sm transition-colors">
                   Get Started
                 </button>
               </Link>
@@ -89,7 +89,7 @@ export default function LandingPage() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
             <Link to="/signup">
-              <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group">
+              <button className="px-8 py-4 bg-blue-600 cursor-pointer hover:bg-blue-700 text-white rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group">
                 Get Started Free
                 <ArrowRight
                   size={20}
@@ -98,7 +98,7 @@ export default function LandingPage() {
               </button>
             </Link>
             <Link to="/signin">
-              <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 hover:border-blue-300 hover:text-blue-600 rounded-lg text-lg font-medium transition-all duration-300 bg-white">
+              <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 cursor-pointer hover:border-blue-300 hover:text-blue-600 rounded-lg text-lg font-medium transition-all duration-300 bg-white">
                 Sign In
               </button>
             </Link>
