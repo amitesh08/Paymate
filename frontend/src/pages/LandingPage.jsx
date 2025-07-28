@@ -87,18 +87,18 @@ export default function LandingPage() {
             peer-to-peer payment solution that just works.
           </p>
 
-          <div className="flex flex-col xs:flex-row justify-center gap-3 sm:gap-4 mb-16 px-4 xs:px-0">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
             <Link to="/signup">
-              <button className="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 bg-blue-600 cursor-pointer hover:bg-blue-700 text-white rounded-lg text-base xs:text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group min-w-0 xs:min-w-[160px]">
+              <button className="px-8 py-4 bg-blue-600 cursor-pointer hover:bg-blue-700 text-white rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group">
                 Get Started Free
                 <ArrowRight
-                  size={18}
-                  className="group-hover:translate-x-1 transition-transform xs:w-5 xs:h-5"
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform"
                 />
               </button>
             </Link>
             <Link to="/signin">
-              <button className="w-full xs:w-auto px-6 xs:px-8 py-3 xs:py-4 border-2 border-gray-300 text-gray-700 cursor-pointer hover:border-blue-300 hover:text-blue-600 rounded-lg text-base xs:text-lg font-medium transition-all duration-300 bg-white min-w-0 xs:min-w-[120px]">
+              <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 cursor-pointer hover:border-blue-300 hover:text-blue-600 rounded-lg text-lg font-medium transition-all duration-300 bg-white">
                 Sign In
               </button>
             </Link>
@@ -355,7 +355,7 @@ export default function LandingPage() {
           </p>
 
           <Link to="/signup">
-            <button className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer inline-flex items-center gap-3 group">
+            <button className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300  inline-flex items-center gap-3 group">
               Start Using Paymate Today
               <ArrowRight
                 size={20}
