@@ -82,7 +82,7 @@ export const Sidebar = () => {
 
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 text-red-500 hover:text-red-600 transition md:justify-start justify-center w-full pl-2 py-1 rounded-lg hover:bg-red-50"
+          className="flex items-center gap-2 text-red-500 hover:text-red-600 transition md:justify-start cursor-pointer justify-center w-full pl-2 py-1 rounded-lg hover:bg-red-50"
         >
           <LogOut size={20} />
           <span className="hidden md:inline">Logout</span>

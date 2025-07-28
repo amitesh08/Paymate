@@ -57,7 +57,7 @@ const Transactions = () => {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="flex-1 sm:flex-none border px-3 py-2 rounded-md text-sm bg-white text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 sm:flex-none border px-3 py-2 rounded-md text-sm bg-white text-gray-800 cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="ALL">All</option>
             <option value="SENT">Sent</option>
@@ -68,7 +68,7 @@ const Transactions = () => {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            className="flex-1 sm:flex-none border px-3 py-2 rounded-md text-sm bg-white text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 sm:flex-none border px-3 py-2 rounded-md text-sm bg-white text-gray-800 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="DESC">Newest First</option>
             <option value="ASC">Oldest First</option>

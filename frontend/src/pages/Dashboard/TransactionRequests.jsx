@@ -69,7 +69,7 @@ export default function TransactionRequests() {
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0">
         <div className="flex space-x-2">
           <button
-            className={`flex-1 sm:flex-none px-4 py-2 rounded-md font-medium transition ${
+            className={`flex-1 sm:flex-none px-4 py-2 rounded-md cursor-pointer font-medium transition ${
               activeTab === "incoming"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-100 text-gray-800 hover:bg-gray-200"
@@ -79,7 +79,7 @@ export default function TransactionRequests() {
             Incoming
           </button>
           <button
-            className={`flex-1 sm:flex-none px-4 py-2 rounded-md font-medium transition ${
+            className={`flex-1 sm:flex-none px-4 py-2 cursor-pointer rounded-md font-medium transition ${
               activeTab === "outgoing"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-100 text-gray-800 hover:bg-gray-200"
@@ -166,13 +166,13 @@ export default function TransactionRequests() {
                       <div className="flex space-x-2 w-full sm:w-auto sm:ml-4">
                         <button
                           onClick={() => handleRespond(req.id, "ACCEPT")}
-                          className="flex-1 sm:flex-none px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 transition"
+                          className="flex-1 sm:flex-none px-4 py-2 bg-green-600 text-white rounded-md text-sm cursor-pointer  hover:bg-green-700 transition"
                         >
                           Accept
                         </button>
                         <button
                           onClick={() => handleRespond(req.id, "REJECT")}
-                          className="flex-1 sm:flex-none px-4 py-2 bg-red-600 text-white rounded-md text-sm hover:bg-red-700 transition"
+                          className="flex-1 sm:flex-none px-4 py-2 bg-red-600 text-white rounded-md text-sm cursor-pointer hover:bg-red-700 transition"
                         >
                           Reject
                         </button>

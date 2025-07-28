@@ -132,7 +132,7 @@ const SendMoney = () => {
                     setSelectedUser(user);
                     setActionType("send");
                   }}
-                  className="flex-1 sm:flex-none px-4 py-2 rounded-lg text-white bg-green-500 hover:bg-green-600 text-sm"
+                  className="flex-1 sm:flex-none px-4 py-2 rounded-lg cursor-pointer text-white bg-green-500 hover:bg-green-600 text-sm"
                 >
                   Send
                 </button>
@@ -141,7 +141,7 @@ const SendMoney = () => {
                     setSelectedUser(user);
                     setActionType("request");
                   }}
-                  className="flex-1 sm:flex-none px-4 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600 text-sm"
+                  className="flex-1 sm:flex-none px-4 py-2 rounded-lg text-white bg-blue-500 cursor-pointer hover:bg-blue-600 text-sm"
                 >
                   Request
                 </button>
