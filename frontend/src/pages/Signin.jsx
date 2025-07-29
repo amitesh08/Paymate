@@ -143,7 +143,7 @@ const Signin = () => {
               <p className="text-sm text-gray-500 mb-2 font-medium">
                 Demo Credentials:
               </p>
-              <p className="text-sm text-gray-400">Email: demo</p>
+              <p className="text-sm text-gray-400">Email: demo@example.com</p>
               <p className="text-sm text-gray-400">Password: 12345678</p>
             </div>
 
