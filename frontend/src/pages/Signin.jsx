@@ -138,6 +138,15 @@ const Signin = () => {
               )}
             </div>
 
+            {/* Demo Credentials */}
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-4">
+              <p className="text-sm text-gray-500 mb-2 font-medium">
+                Demo Credentials:
+              </p>
+              <p className="text-sm text-gray-400">Email: demo</p>
+              <p className="text-sm text-gray-400">Password: 12345678</p>
+            </div>
+
             <button
               type="submit"
               className="w-full bg-blue-600 cursor-pointer hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
