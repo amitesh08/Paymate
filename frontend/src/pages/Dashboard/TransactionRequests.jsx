@@ -39,7 +39,8 @@ export default function TransactionRequests() {
   const handleRespond = async (requestId, action) => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/v1/requests/respond`,
+        // `${import.meta.env.VITE_API_URL}/api/v1/requests/respond`,
+        "/api/v1/requests/respond",
         {
           requestId,
           action,
